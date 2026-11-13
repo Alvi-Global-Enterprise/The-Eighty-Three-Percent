@@ -34,7 +34,7 @@ export function TherapistCta() {
           aria-label="Find out more"
         >
           <Image
-            src="/assets/find-out-more.png"
+            src="/assets/find-out-more2.png"
             alt="Find out more"
             width={340}
             height={111}
