@@ -1,0 +1,218 @@
+@import "tailwindcss";
+@import "@fontsource/line-seed-jp/400.css";
+@import "@fontsource/line-seed-jp/700.css";
+@import "@fontsource/line-seed-jp/800.css";
+@import "@fontsource/caveat/500.css";
+@import "@fontsource/caveat/600.css";
+
+:root {
+  /* Sampled from provided Figma screenshot — Figma file untouched */
+  --background: #ffffff;
+  --foreground: #000000;
+  --coral: #fc5a57;
+  --coral-deep: #f04d4a;
+  --coral-soft: #ff8071;
+  --coral-outline: #f65d5f;
+  --percent-pink: #ea2540;
+  --maroon: #250000;
+  --pink-pill: #fe3c56;
+  --peach: #fdc18d;
+  --peach-deep: #efb48a;
+  --blush: #f9e4e1;
+  --cream: #fff8f7;
+  --brown: #1a1a1a;
+  --brown-muted: #6b5c5a;
+  --muted: #808080;
+  --nav-muted: #8a7a78;
+  --footer: #0c0d0d;
+  --white: #ffffff;
+  --font-line: "LINE Seed JP", system-ui, sans-serif;
+  --font-script-family: "Caveat", cursive;
+}
+
+/*
+ * Pixel-perfect scaling: the page is always laid out as the desktop Figma
+ * frame (DESIGN_WIDTH, see src/app/layout.tsx) and scaled uniformly to the
+ * viewport width via CSS zoom. Responsive breakpoints are therefore disabled
+ * (min-width: 0) so sm:/md:/lg:/xl: variants always apply and nothing reflows.
+ */
+@theme {
+  --breakpoint-sm: 0px;
+  --breakpoint-md: 0px;
+  --breakpoint-lg: 0px;
+  --breakpoint-xl: 0px;
+  --breakpoint-2xl: 0px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-coral: var(--coral);
+  --color-coral-deep: var(--coral-deep);
+  --color-coral-soft: var(--coral-soft);
+  --color-coral-outline: var(--coral-outline);
+  --color-percent-pink: var(--percent-pink);
+  --color-maroon: var(--maroon);
+  --color-pink-pill: var(--pink-pill);
+  --color-peach: var(--peach);
+  --color-peach-deep: var(--peach-deep);
+  --color-blush: var(--blush);
+  --color-cream: var(--cream);
+  --color-brown: var(--brown);
+  --color-brown-muted: var(--brown-muted);
+  --color-muted: var(--muted);
+  --color-nav-muted: var(--nav-muted);
+  --color-footer: var(--footer);
+  --font-sans: var(--font-line);
+  --font-display: var(--font-line);
+  --font-script: var(--font-script-family);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-line);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+/* ---------- Animations (opacity/transform only: layout never shifts) ---------- */
+.anim [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s);
+  will-change: opacity, transform;
+}
+
+.anim [data-reveal="left"] {
+  transform: translateX(-36px);
+}
+
+.anim [data-reveal="right"] {
+  transform: translateX(36px);
+}
+
+.anim [data-reveal="zoom"] {
+  transform: scale(0.94);
+}
+
+.anim [data-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.float-slow {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+.float-card {
+  animation: float-y 5s ease-in-out -2s infinite;
+}
+
+/* Buttons / links */
+a[class*="bg-coral"],
+a[class*="border-coral-outline"] {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+a[class*="bg-coral"]:hover,
+a[class*="border-coral-outline"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(252, 90, 87, 0.3);
+}
+
+a[class*="bg-coral"]:active,
+a[class*="border-coral-outline"]:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .float-slow,
+  .float-card {
+    animation: none;
+  }
+}
+
+.hand-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.hand-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.08em;
+  height: 0.16em;
+  background: var(--coral);
+  border-radius: 999px;
+  transform: rotate(-2deg);
+}
+
+.sparkles {
+  display: inline-flex;
+  gap: 0.16rem;
+  transform: rotate(-22deg);
+}
+
+.sparkles span {
+  display: block;
+  width: 0.16rem;
+  height: 0.85rem;
+  border-radius: 999px;
+  background: var(--coral);
+}
+
+.sparkles span:nth-child(1) {
+  transform: rotate(-30deg);
+  height: 0.65rem;
+}
+
+.sparkles span:nth-child(2) {
+  height: 1rem;
+}
+
+.sparkles span:nth-child(3) {
+  transform: rotate(30deg);
+  height: 0.65rem;
+}
