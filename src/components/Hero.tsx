@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { QuickExit } from "@/components/QuickExit";
 
 export function Hero() {
   return (
@@ -13,6 +14,8 @@ export function Hero() {
         className="pointer-events-none object-cover object-right-bottom"
         aria-hidden
       />
+
+      <QuickExit />
 
       <div className="relative flex h-[808px] w-full flex-col gap-6 px-5 py-8 md:px-28 lg:flex-row lg:items-start lg:justify-between lg:gap-4 lg:pt-10">
         <div data-reveal="left" className="relative z-10 w-full max-w-[640px] shrink-0 pt-14 lg:max-w-[52%] lg:pt-24">
