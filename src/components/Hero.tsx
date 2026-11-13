@@ -29,7 +29,7 @@ export function Hero() {
                   alt=""
                   width={107}
                   height={91}
-                  className="pointer-events-none absolute -right-1 -top-7 h-auto w-[40px] md:-top-8 md:w-[46px]"
+                  className="pointer-events-none absolute -right-6 -top-12 h-auto w-[72px] md:-right-8 md:-top-14 md:w-[84px]"
                   aria-hidden
                 />
               </span>
